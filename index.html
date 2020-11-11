@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Word Find</title>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+
+<body>
+  <script language="javascript" type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/wordfind.js"></script>
+  <script type="text/javascript" src="scripts/wordfindgame.js"></script>
+  <!--Espacio en donde se pintara la sopa de letras-->
+  <div id='puzzle'></div>
+  <!--Espacio en donde se pintaran las palabras de la sopa de letras-->
+  <div id='words'></div>
+  <!--Boton que me permite resolver el puzzle-->
+  <div><button id='solve'>Solve Puzzle</button></div>
+  <!--Boton que me permite reintentar el puzzle-->
+  <div><button id='crear'>Reintentar</button></div>
+  <script>
+    /*
+     El juego se crea automatico con las palabras que se tienen en el arreglo de words, entonces ha que buscar la manera de llenar el arreglo 
+    */
+    var words = ['Develoteca', 'cursos', 'ayuda', 'Videos', 'Tutoriales', 'Plugins', 'hola', 'prueba'];
+    /*
+    El metodo create recibe como parametros el arreglo con las palabras
+    y los divs en donde se va a dibujar la sopa de letras y la lista con las palabras 
+    */
+    var gamePuzzle = wordfindgame.create(words, '#puzzle', '#words');
+    /*
+    El metodo solve es una función que permite resolver el juego de sopa de letras me pide como parametros el puzzle y las palabras, cuando se ejecuta
+    pinta las palabras en la sopa de letras
+    */
+    $('#solve').click(function () { wordfindgame.solve(gamePuzzle, words); });
+    /*
+    Este metodo crear me permite que se vuelva a crear el puzzle cuando el usuario presione el boton de reintentar, pide como parametros el arreglo de palabras y los contenedores en donde se va a pintar la sopa de letras y la lista de palabras de estas
+    */
+    $('#crear').click(function () { wordfindgame.create(words, '#puzzle', '#words'); });
+    var puzzle = wordfind.newPuzzle(words, { height: 18, width: 18, fillBlanks: false });
+    wordfind.print(puzzle);
+  </script>
+</body>
+
+</html>
